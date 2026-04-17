@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ETAP Kenya | Premium Simulator</title>
+  <title>ETAP Kenya | Smooth Scrollytelling</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,19 +12,16 @@
     
     <div class="fixed-scene">
       <div id="scene" class="scene escena-0">
-        
         <div class="obj sun">
           <div class="tri t-tl" style="left: 0; top: 0; width: 50%; height: 100%; background-color: var(--c-s1);"></div>
           <div class="tri t-br" style="left: 50%; top: 0; width: 50%; height: 100%; background-color: var(--c-s2);"></div>
         </div>
-
         <div class="obj panel">
           <div class="panel-board">
             <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-p1);"></div>
             <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-p2);"></div>
           </div>
         </div>
-
         <div class="obj pipe">
           <div class="pipe-structure">
             <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-p-edge);"></div>
@@ -33,7 +30,6 @@
             <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-water-pipe);"></div>
           </div>
         </div>
-
         <div class="obj tank">
           <div class="tank-structure">
             <div class="tri t-tl" style="width: 50%; height: 100%; background-color: var(--c-t-left);"></div>
@@ -45,7 +41,6 @@
             <div class="tri t-up" style="width: 100%; height: 100%; background-color: var(--c-water-tank);"></div>
           </div>
         </div>
-
         <div class="obj well">
           <div class="well-structure">
             <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-w1);"></div>
@@ -55,7 +50,6 @@
             <div class="tri t-dn" style="width: 100%; height: 100%; background-color: var(--c-water-well);"></div>
           </div>
         </div>
-
         <div class="ground">
           <div class="g-block" style="left: 0; width: 25%;">
             <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-g2);"></div>
@@ -78,101 +72,101 @@
             <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-g6);"></div>
           </div>
         </div>
-
       </div>
     </div>
 
-    <div class="scroll-zone">
-      
-      <article class="step" data-step="0">
-        <div class="step-num" style="--step-color: #647a90">0</div>
-        <h1 class="step-title">Night Mode</h1>
-        <div class="step-desc">
-          <p>System is inactive. The water does not flow. All contamination indicators are at maximum levels.</p>
-        </div>
-        <div class="connector"></div>
-      </article>
+    <div class="scroll-zone" id="scroll-zone">
+      <div class="step-list">
+        
+        <article class="step active" data-step="0">
+          <div class="step-num" style="--step-color: #647a90">0</div>
+          <h1 class="step-title">Night Mode</h1>
+          <div class="step-desc">
+            <p>The system is completely dormant. With no energy, the flow is halted. This is the baseline of our <span class="highlight">OpEx 0 facility</span> in Kenya, quietly waiting for the first sun rays to initiate the purification cycle.</p>
+          </div>
+          <div class="connector"></div>
+        </article>
 
-      <article class="step" data-step="1">
-        <div class="step-num" style="--step-color: #ffd95e">1</div>
-        <h1 class="step-title">Solar Pumping</h1>
-        <div class="step-desc">
-          <p>Solar energy activates the pump. Raw, turbid water begins its journey from the source.</p>
-        </div>
-        <div class="connector"></div>
-      </article>
+        <article class="step" data-step="1">
+          <div class="step-num" style="--step-color: #ffd95e">1</div>
+          <h1 class="step-title">Solar Pumping</h1>
+          <div class="step-desc">
+            <p>Solar energy hits the panels and activates the submerged pump. A steady flow of <span class="highlight">raw, turbid water</span> begins its journey from the source, powered entirely by a 100% off-grid, zero-carbon solution.</p>
+          </div>
+          <div class="connector"></div>
+        </article>
 
-      <article class="step" data-step="2">
-        <div class="step-num" style="--step-color: #1e88e5">2</div>
-        <h1 class="step-title">Buffer Tank</h1>
-        <div class="step-desc">
-          <p>6000L tank acts as a hydraulic buffer. LoRa telemetry maintains perfect balance.</p>
-        </div>
-        <div class="connector"></div>
-      </article>
+        <article class="step" data-step="2">
+          <div class="step-num" style="--step-color: #1e88e5">2</div>
+          <h1 class="step-title">Buffer Tank</h1>
+          <div class="step-desc">
+            <p>The 6000L tank acts as a <span class="highlight">hydraulic buffer</span>, ensuring a perfectly stabilized flow of 208 L/h. Integrated LoRaWAN telemetry monitors the levels in real-time, autonomously managing the intake pump.</p>
+          </div>
+          <div class="connector"></div>
+        </article>
 
-      <article class="step" data-step="3">
-        <div class="step-num" style="--step-color: #94a3b8">3</div>
-        <h1 class="step-title">Cascade Aeration</h1>
-        <div class="step-desc">
-          <p>Oxygenation strips away foul gases and oxidizes dissolved Iron into solid particles.</p>
-        </div>
-        <div class="connector"></div>
-      </article>
+        <article class="step" data-step="3">
+          <div class="step-num" style="--step-color: #94a3b8">3</div>
+          <h1 class="step-title">Cascade Aeration</h1>
+          <div class="step-desc">
+            <p>Gravity forces the water down steps, maximizing the air-water interface. This natural process effectively strips away foul gases like H2S and oxidizes <span class="highlight">dissolved Iron</span> into solid, filterable particles.</p>
+          </div>
+          <div class="connector"></div>
+        </article>
 
-      <article class="step" data-step="4">
-        <div class="step-num" style="--step-color: #7c5f4f">4</div>
-        <h1 class="step-title">Settling Tank</h1>
-        <div class="step-desc">
-          <p>Slowing water allows gravity to settle heavy solids. Mud is trapped on the sloped floor.</p>
-        </div>
-        <div class="connector"></div>
-      </article>
+        <article class="step" data-step="4">
+          <div class="step-num" style="--step-color: #7c5f4f">4</div>
+          <h1 class="step-title">Settling Tank</h1>
+          <div class="step-desc">
+            <p>By drastically slowing the water velocity to just 0.08 m/h, gravity takes over. Over 60% of the <span class="highlight">heavy mud and flocs</span> sink and remain safely trapped on the specially designed sloped floor.</p>
+          </div>
+          <div class="connector"></div>
+        </article>
 
-      <article class="step" data-step="5">
-        <div class="step-num" style="--step-color: #54b3f3">5</div>
-        <h1 class="step-title">Roughing Filter (URF)</h1>
-        <div class="step-desc">
-          <p>Water rises through gravel layers. Fine clay sticks to the stones, water turns visually clear.</p>
-        </div>
-        <div class="connector"></div>
-      </article>
+        <article class="step" data-step="5">
+          <div class="step-num" style="--step-color: #54b3f3">5</div>
+          <h1 class="step-title">Roughing Filter (URF)</h1>
+          <div class="step-desc">
+            <p>The water gently rises through three specific layers of gravel. Fine clay particles stick to the rough stones through <span class="highlight">physical adsorption</span>, leaving the water visually clear and protecting downstream filters.</p>
+          </div>
+          <div class="connector"></div>
+        </article>
 
-      <article class="step" data-step="6">
-        <div class="step-num" style="--step-color: #2e7d32">6</div>
-        <h1 class="step-title">Slow Sand Filter</h1>
-        <div class="step-desc">
-          <p>The biological engine. The Schmutzdecke biofilm naturally predates on dangerous pathogens.</p>
-        </div>
-        <div class="connector"></div>
-      </article>
+        <article class="step" data-step="6">
+          <div class="step-num" style="--step-color: #2e7d32">6</div>
+          <h1 class="step-title">Slow Sand Filter</h1>
+          <div class="step-desc">
+            <p>This is the biological engine of the system. A living, natural ecosystem called the <span class="highlight">Schmutzdecke</span> develops on the sand bed, actively predating on dangerous bacteria, viruses, and parasites.</p>
+          </div>
+          <div class="connector"></div>
+        </article>
 
-      <article class="step" data-step="7">
-        <div class="step-num" style="--step-color: #00E5FF">7</div>
-        <h1 class="step-title">Biochar Polishing</h1>
-        <div class="step-desc">
-          <p>Final chemical adsorption. Biochar eliminates trace organics, delivering crystal-clear water.</p>
-        </div>
-      </article>
-
-      <div class="final-spacer"></div>
+        <article class="step" data-step="7">
+          <div class="step-num" style="--step-color: #00E5FF">7</div>
+          <h1 class="step-title">Biochar Polishing</h1>
+          <div class="step-desc">
+            <p>The final touch of chemical innovation. Locally sourced biochar acts as a powerful sponge, capturing any remaining <span class="highlight">trace organics and odors</span>, and delivering fresh, crystal-clear water to the school.</p>
+          </div>
+        </article>
+        
+      </div>
     </div>
 
     <div class="fixed-indicators">
       <div class="indicator">
-        <span class="ind-label">🔴 TURBIDITY</span>
+        <span class="ind-label">🔴 Turbidity</span>
         <span id="val-turb" class="ind-value">100%</span>
       </div>
       <div class="indicator">
-        <span class="ind-label">🟡 GASES</span>
+        <span class="ind-label">🟡 Gases</span>
         <span id="val-gas" class="ind-value">100%</span>
       </div>
       <div class="indicator">
-        <span class="ind-label">🦠 PATHOGENS</span>
+        <span class="ind-label">🦠 Pathogens</span>
         <span id="val-path" class="ind-value">100%</span>
       </div>
       <div class="indicator">
-        <span class="ind-label">🧪 ORGANICS</span>
+        <span class="ind-label">🧪 Organics</span>
         <span id="val-org" class="ind-value">100%</span>
       </div>
     </div>
