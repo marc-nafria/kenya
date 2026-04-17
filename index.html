@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETAP Kenya | Premium Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-frame">
+    
+    <div class="fixed-scene">
+      <div id="scene" class="scene escena-0">
+        
+        <div class="obj sun">
+          <div class="tri t-tl" style="left: 0; top: 0; width: 50%; height: 100%; background-color: var(--c-s1);"></div>
+          <div class="tri t-br" style="left: 50%; top: 0; width: 50%; height: 100%; background-color: var(--c-s2);"></div>
+        </div>
+
+        <div class="obj panel">
+          <div class="panel-board">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-p1);"></div>
+            <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-p2);"></div>
+          </div>
+        </div>
+
+        <div class="obj pipe">
+          <div class="pipe-structure">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-p-edge);"></div>
+          </div>
+          <div class="pipe-water" id="pipe-flow">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-water-pipe);"></div>
+          </div>
+        </div>
+
+        <div class="obj tank">
+          <div class="tank-structure">
+            <div class="tri t-tl" style="width: 50%; height: 100%; background-color: var(--c-t-left);"></div>
+            <div class="tri t-br" style="width: 50%; height: 100%; background-color: var(--c-t-mid);"></div>
+            <div class="tri t-tl" style="left: 50%; width: 50%; height: 100%; background-color: var(--c-t-mid);"></div>
+            <div class="tri t-br" style="left: 50%; width: 50%; height: 100%; background-color: var(--c-t-right);"></div>
+          </div>
+          <div class="tank-water">
+            <div class="tri t-up" style="width: 100%; height: 100%; background-color: var(--c-water-tank);"></div>
+          </div>
+        </div>
+
+        <div class="obj well">
+          <div class="well-structure">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-w1);"></div>
+            <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-w2);"></div>
+          </div>
+          <div class="well-water">
+            <div class="tri t-dn" style="width: 100%; height: 100%; background-color: var(--c-water-well);"></div>
+          </div>
+        </div>
+
+        <div class="ground">
+          <div class="g-block" style="left: 0; width: 25%;">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-g2);"></div>
+            <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-g3);"></div>
+          </div>
+          <div class="g-block" style="left: 25%; width: 20%;">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-g3);"></div>
+            <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-g4);"></div>
+          </div>
+          <div class="g-block" style="left: 45%; width: 15%;">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-g2);"></div>
+            <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-g1);"></div>
+          </div>
+          <div class="g-block" style="left: 60%; width: 20%;">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-g1);"></div>
+            <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-g5);"></div>
+          </div>
+          <div class="g-block" style="left: 80%; width: 20%;">
+            <div class="tri t-tl" style="width: 100%; height: 100%; background-color: var(--c-g5);"></div>
+            <div class="tri t-br" style="width: 100%; height: 100%; background-color: var(--c-g6);"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="scroll-zone">
+      
+      <article class="step" data-step="0">
+        <div class="step-num" style="--step-color: #647a90">0</div>
+        <h1 class="step-title">Night Mode</h1>
+        <div class="step-desc">
+          <p>System is inactive. The water does not flow. All contamination indicators are at maximum levels.</p>
+        </div>
+        <div class="connector"></div>
+      </article>
+
+      <article class="step" data-step="1">
+        <div class="step-num" style="--step-color: #ffd95e">1</div>
+        <h1 class="step-title">Solar Pumping</h1>
+        <div class="step-desc">
+          <p>Solar energy activates the pump. Raw, turbid water begins its journey from the source.</p>
+        </div>
+        <div class="connector"></div>
+      </article>
+
+      <article class="step" data-step="2">
+        <div class="step-num" style="--step-color: #1e88e5">2</div>
+        <h1 class="step-title">Buffer Tank</h1>
+        <div class="step-desc">
+          <p>6000L tank acts as a hydraulic buffer. LoRa telemetry maintains perfect balance.</p>
+        </div>
+        <div class="connector"></div>
+      </article>
+
+      <article class="step" data-step="3">
+        <div class="step-num" style="--step-color: #94a3b8">3</div>
+        <h1 class="step-title">Cascade Aeration</h1>
+        <div class="step-desc">
+          <p>Oxygenation strips away foul gases and oxidizes dissolved Iron into solid particles.</p>
+        </div>
+        <div class="connector"></div>
+      </article>
+
+      <article class="step" data-step="4">
+        <div class="step-num" style="--step-color: #7c5f4f">4</div>
+        <h1 class="step-title">Settling Tank</h1>
+        <div class="step-desc">
+          <p>Slowing water allows gravity to settle heavy solids. Mud is trapped on the sloped floor.</p>
+        </div>
+        <div class="connector"></div>
+      </article>
+
+      <article class="step" data-step="5">
+        <div class="step-num" style="--step-color: #54b3f3">5</div>
+        <h1 class="step-title">Roughing Filter (URF)</h1>
+        <div class="step-desc">
+          <p>Water rises through gravel layers. Fine clay sticks to the stones, water turns visually clear.</p>
+        </div>
+        <div class="connector"></div>
+      </article>
+
+      <article class="step" data-step="6">
+        <div class="step-num" style="--step-color: #2e7d32">6</div>
+        <h1 class="step-title">Slow Sand Filter</h1>
+        <div class="step-desc">
+          <p>The biological engine. The Schmutzdecke biofilm naturally predates on dangerous pathogens.</p>
+        </div>
+        <div class="connector"></div>
+      </article>
+
+      <article class="step" data-step="7">
+        <div class="step-num" style="--step-color: #00E5FF">7</div>
+        <h1 class="step-title">Biochar Polishing</h1>
+        <div class="step-desc">
+          <p>Final chemical adsorption. Biochar eliminates trace organics, delivering crystal-clear water.</p>
+        </div>
+      </article>
+
+      <div class="final-spacer"></div>
+    </div>
+
+    <div class="fixed-indicators">
+      <div class="indicator">
+        <span class="ind-label">🔴 TURBIDITY</span>
+        <span id="val-turb" class="ind-value">100%</span>
+      </div>
+      <div class="indicator">
+        <span class="ind-label">🟡 GASES</span>
+        <span id="val-gas" class="ind-value">100%</span>
+      </div>
+      <div class="indicator">
+        <span class="ind-label">🦠 PATHOGENS</span>
+        <span id="val-path" class="ind-value">100%</span>
+      </div>
+      <div class="indicator">
+        <span class="ind-label">🧪 ORGANICS</span>
+        <span id="val-org" class="ind-value">100%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
