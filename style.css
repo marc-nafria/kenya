@@ -1,170 +1,187 @@
 :root {
-    --app-width: 800px;
-    --dur: 900ms;
-    --ease: cubic-bezier(.22,.61,.36,1);
-    --water-blue: #1E88E5;
-  }
-  
-  * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-  
-  body, html {
-    margin: 0; padding: 0;
-    background-color: #F8FAFC;
-    font-family: 'Inter', system-ui, sans-serif;
-    color: #0F172A;
-    display: flex; justify-content: center;
-    overflow: hidden;
-  }
-  
-  /* =========================================
-     LAYOUT FLEXBOX
-     ========================================= */
-  .app-frame {
-    width: 100%; max-width: var(--app-width);
-    height: 100vh; background: #ffffff;
-    display: flex; flex-direction: column;
-    border-left: 1px solid #F1F5F9; border-right: 1px solid #F1F5F9;
-    box-shadow: 0 0 40px rgba(0,0,0,0.02);
-  }
-  
-  .fixed-scene {
-    flex: 0 0 35vh; 
-    width: 100%; display: flex; align-items: flex-end; justify-content: center;
-    padding: 10px 20px 20px; z-index: 20;
-  }
-  
-  .scroll-zone {
-    flex: 1; 
-    overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-  }
-  .scroll-zone::-webkit-scrollbar { display: none; }
-  
-  .step-list { padding: 20vh 0; }
-  
-  .step {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; 
-    /* Padding fluido: menos en móvil, más en escritorio */
-    padding: 20px clamp(20px, 6vw, 50px); 
-    position: relative;
-    margin-bottom: 60px; 
-    scroll-snap-align: center;
-    opacity: 0.25; transform: scale(0.95);
-    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  
-  .step.active { opacity: 1; transform: scale(1); }
-  
-  /* TIPOGRAFÍA Y ELEMENTOS FLUIDOS (Adaptables de móvil a escritorio) */
-  .step-num {
-    font-size: clamp(0.75rem, 2vw, 0.85rem); font-weight: 900; color: var(--step-color);
-    border: 2px solid var(--step-color); background: #ffffff;
-    /* El círculo también se adapta al tamaño de pantalla */
-    width: clamp(28px, 6vw, 36px); height: clamp(28px, 6vw, 36px); 
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 50%; margin-bottom: 12px; z-index: 2;
-  }
-  
-  .step-title { 
-    /* Desde 1.4rem en móviles pequeños hasta 2rem en pantallas grandes */
-    font-size: clamp(1.4rem, 5vw, 2rem); 
-    font-weight: 800; margin: 0 0 10px; color: #1E293B; 
-  }
-  
-  .step-desc p { 
-    /* Desde 0.95rem hasta 1.15rem */
-    font-size: clamp(0.95rem, 3vw, 1.15rem); 
-    line-height: 1.6; color: #64748B; max-width: 500px; margin: 0; 
-  }
-  .highlight { color: var(--water-blue); font-weight: 700; }
-  
-  .connector {
-    position: absolute; bottom: -60px; 
-    width: 2px; height: 60px;
-    background: repeating-linear-gradient(to bottom, #CBD5E1 0, #CBD5E1 6px, transparent 6px, transparent 12px);
-  }
-  
-  /* =========================================
-     INDICADORES FOOTER (Tipografía Fluida)
-     ========================================= */
-  .fixed-indicators {
-    flex: 0 0 clamp(65px, 10vh, 80px); /* Altura adaptable */
-    width: 100%; display: flex; justify-content: space-evenly; align-items: center;
-    background: #ffffff; border-top: 1px solid #E2E8F0; z-index: 30;
-  }
-  
-  .indicator { display: flex; flex-direction: column; align-items: center; }
-  
-  .ind-label { 
-    font-size: clamp(0.5rem, 1.5vw, 0.65rem); 
-    font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; 
-  }
-  
-  .ind-value { 
-    font-size: clamp(1rem, 3.5vw, 1.35rem); 
-    font-weight: 800; color: #0F172A; font-variant-numeric: tabular-nums; transition: color 0.3s ease;
-  }
-  
-  /* =========================================
-     GEOMETRÍA EDITORIAL
-     ========================================= */
-  .scene {
-    position: relative; width: 100%; max-width: 600px; aspect-ratio: 16 / 9;
-    border-radius: 20px; overflow: hidden;
-    transition: background-color var(--dur) var(--ease);
-  }
-  .tri { position: absolute; transform: scale(1.005); transition: background-color var(--dur) var(--ease), opacity var(--dur) ease; }
-  .t-tl { clip-path: polygon(0 0, 100% 0, 0 100%); }
-  .t-br { clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-  .t-bl { clip-path: polygon(0 0, 100% 100%, 0 100%); }
-  .t-up { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-  .t-dn { clip-path: polygon(0 0, 100% 0, 50% 100%); }
-  .obj { position: absolute; transition: transform var(--dur) var(--ease); }
-  
-  .ground { position: absolute; bottom: 0; left: 0; width: 100%; height: 22%; z-index: 10; }
-  .g-block { position: absolute; height: 100%; bottom: 0; }
-  .sun { top: 12%; right: 12%; width: 10%; aspect-ratio: 1; z-index: 5; }
-  .panel { bottom: 35%; left: 15%; width: 22%; height: 35%; transform: skewX(-15deg); z-index: 8;}
-  .panel-board { position: absolute; top: 0; left: 0; width: 100%; height: 60%; }
-  .well { bottom: 15%; left: 42%; width: 14%; height: 28%; z-index: 15; }
-  .well-structure { width: 100%; height: 100%; }
-  .well-water { position: absolute; bottom: 10%; left: 20%; width: 60%; height: 50%; opacity: 0; transition: opacity var(--dur) ease; }
-  .pipe { bottom: 42%; left: 55%; width: 25%; height: 5%; z-index: 7; }
-  .pipe-structure { width: 100%; height: 100%; }
-  .pipe-water { position: absolute; top: 20%; left: 0; width: 100%; height: 60%; opacity: 0; transition: all 1s ease; }
-  .tank { bottom: 22%; right: 10%; width: 18%; height: 48%; z-index: 8; }
-  .tank-structure { width: 100%; height: 100%; }
-  .tank-water { position: absolute; bottom: 5%; left: 5%; width: 90%; height: 65%; opacity: 0; transition: opacity var(--dur) ease; }
-  
-  .scene {
-    --c-g1: #e6cba5; --c-g2: #a07f67; --c-g3: #7c5f4f; --c-g4: #5e4538; --c-g5: #7b8c5a; --c-g6: #2e7d32;
-    --c-s1: #fff2a8; --c-s2: #ffd95e; --c-p1: #1d4ed8; --c-p2: #1e40af; 
-    --c-w1: #94a3b8; --c-w2: #475569; --c-p-edge: #475569;
-    --c-t-left: #e2e8f0; --c-t-mid: #94a3b8; --c-t-right: #475569;
-  }
-  .escena-0 {
-    background-color: #0f172a;
-    --c-g1: #3b4e60; --c-g2: #1e293b; --c-g3: #647a90; --c-g4: #3b4e60; --c-g5: #1e293b; --c-g6: #647a90;
-    --c-s1: #647a90; --c-s2: #3b4e60; --c-p1: #3b4e60; --c-p2: #1e293b;
-    --c-w1: #3b4e60; --c-w2: #1e293b; --c-p-edge: #1e293b;
-    --c-t-left: #475569; --c-t-mid: #3b4e60; --c-t-right: #1e293b;
-    --c-water-well: transparent; --c-water-pipe: transparent; --c-water-tank: transparent;
-  }
-  .escena-0 .sun { transform: scale(0.8); opacity: 0.5; }
-  .escena-1 { background-color: #edf4f8; --c-water-well: #a07f67; --c-water-pipe: #a07f67; --c-water-tank: #a07f67; }
-  .escena-1 .sun, .escena-2 .sun, .escena-3 .sun, .escena-4 .sun, .escena-5 .sun, .escena-6 .sun, .escena-7 .sun { transform: scale(1); opacity: 1; }
-  .escena-1 .well-water, .escena-1 .pipe-water, .escena-1 .tank-water { opacity: 1; }
-  .escena-2 { background-color: #edf4f8; --c-water-well: #a07f67; --c-water-pipe: #a07f67; --c-water-tank: #a07f67; }
-  .escena-2 .well-water, .escena-2 .pipe-water, .escena-2 .tank-water { opacity: 1; }
-  .escena-3 { background-color: #edf4f8; --c-water-well: #a07f67; --c-water-pipe: #a07f67; --c-water-tank: #7c9caf; }
-  .escena-3 .well-water, .escena-3 .pipe-water, .escena-3 .tank-water { opacity: 1; }
-  .escena-4 { background-color: #edf4f8; --c-water-well: #a07f67; --c-water-pipe: #a07f67; --c-water-tank: #94a3b8; }
-  .escena-4 .well-water, .escena-4 .pipe-water, .escena-4 .tank-water { opacity: 1; }
-  .escena-5 { background-color: #edf4f8; --c-water-well: #a07f67; --c-water-pipe: #a07f67; --c-water-tank: #54b3f3; }
-  .escena-5 .well-water, .escena-5 .pipe-water, .escena-5 .tank-water { opacity: 1; }
-  .escena-6 { background-color: #edf4f8; --c-water-well: #a07f67; --c-water-pipe: #a07f67; --c-water-tank: #1e88e5; }
-  .escena-6 .well-water, .escena-6 .pipe-water, .escena-6 .tank-water { opacity: 1; }
-  .escena-7 { background-color: #edf4f8; --c-water-well: #a07f67; --c-water-pipe: #a07f67; --c-water-tank: #00E5FF; }
-  .escena-7 .well-water, .escena-7 .pipe-water, .escena-7 .tank-water { opacity: 1; }
+  --app-width: 860px;
+  --water-blue: #1E88E5;
+  --clean: #00E5FF;
+  --raw: #a07f67;
+  /* Page background + matching text halo + text tones.
+     Per-scene values are set from JS so every slide can set its
+     own mood (e.g. dark navy night with light text). */
+  --bg: #F8FAFC;
+  --halo: rgba(248, 250, 252, 0.95);
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-label: #94A3B8;
+  --panel-bg: rgba(248, 250, 252, 0.82);
+}
+
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+body, html {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0F172A;
+  display: flex; justify-content: center;
+  overflow: hidden;
+  transition: background-color 1.2s cubic-bezier(.55, .15, .35, 1);
+}
+
+/* =========================================
+   APP FRAME — positioning context only.
+   SVG is a full-page layer beneath everything;
+   text cards + UI overlay it.
+   ========================================= */
+.app-frame {
+  width: 100%;
+  /* no hard max-width on desktop full-screen — the SVG background
+     needs room to breathe; text columns have their own max-width */
+  max-width: 100%;
+  height: 100vh;
+  position: relative;
+  background: transparent;
+}
+
+/* =========================================
+   SVG SCENE — full-page background layer
+   ========================================= */
+#scene {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: transparent;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.tri {
+  shape-rendering: geometricPrecision;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+}
+
+/* =========================================
+   SCROLL ZONE — full-viewport scroll surface
+   overlaying the SVG
+   ========================================= */
+.scroll-zone {
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  z-index: 5;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+}
+.scroll-zone::-webkit-scrollbar { display: none; }
+
+.step-list { padding: 40vh 0; }
+
+.step {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 20px clamp(24px, 8vw, 80px);
+  position: relative;
+  margin-bottom: 60px;
+  scroll-snap-align: center;
+  opacity: 0.25; transform: scale(0.95);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Scenes 1-7: reserve the upper half of the viewport for the illustration.
+   The step becomes ~70vh tall with its text content pinned to the bottom.
+   When scroll-snap centres the step, its vertical middle lands at viewport
+   centre — so the content (flex-end) sits in the lower third and the upper
+   ~45vh stays clear for the SVG scene to breathe. */
+.step:not([data-step="0"]) {
+  min-height: 70vh;
+  justify-content: flex-end;
+  padding-bottom: 6vh;
+}
+
+/* The intro (step 0) fades out completely (not just to 25%) and faster,
+   so it gets out of the way quickly when the user scrolls to step 1. */
+.step[data-step="0"] {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.step.active { opacity: 1; transform: scale(1); }
+
+.step-num {
+  font-size: clamp(0.75rem, 2vw, 0.85rem); font-weight: 900; color: var(--step-color);
+  border: 2px solid var(--step-color); background: var(--panel-bg);
+  backdrop-filter: blur(4px);
+  width: clamp(28px, 6vw, 36px); height: clamp(28px, 6vw, 36px);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; margin-bottom: 14px; z-index: 2;
+  transition: background 1.2s cubic-bezier(.55, .15, .35, 1);
+}
+
+.step-title {
+  font-size: clamp(1.4rem, 5vw, 2.1rem);
+  font-weight: 800; margin: 0 0 12px; color: var(--text-primary);
+  /* soft halo lifts the text off the triangles behind.
+     --halo tracks the page bg so it blends with whatever tint is active. */
+  text-shadow: 0 0 14px var(--halo), 0 0 28px var(--halo);
+  transition:
+    color 1.2s cubic-bezier(.55, .15, .35, 1),
+    text-shadow 1.2s cubic-bezier(.55, .15, .35, 1);
+}
+
+.step-desc p {
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
+  line-height: 1.6; color: var(--text-secondary); max-width: 520px; margin: 0;
+  text-shadow: 0 0 12px var(--halo), 0 0 24px var(--halo);
+  transition:
+    color 1.2s cubic-bezier(.55, .15, .35, 1),
+    text-shadow 1.2s cubic-bezier(.55, .15, .35, 1);
+}
+.highlight { color: var(--water-blue); font-weight: 700; }
+
+.connector {
+  position: absolute; bottom: -60px;
+  width: 2px; height: 60px;
+  background: repeating-linear-gradient(to bottom, #CBD5E1 0, #CBD5E1 6px, transparent 6px, transparent 12px);
+}
+
+/* =========================================
+   FOOTER INDICATORS — absolute bottom
+   ========================================= */
+.fixed-indicators {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: clamp(58px, 9vh, 72px);
+  display: flex; justify-content: space-evenly; align-items: center;
+  background: transparent;
+  z-index: 10;
+}
+
+.indicator {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--panel-bg);
+  backdrop-filter: blur(6px);
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: background 1.2s cubic-bezier(.55, .15, .35, 1);
+}
+
+.ind-label {
+  font-size: clamp(0.5rem, 1.5vw, 0.65rem);
+  font-weight: 800; color: var(--text-label);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;
+  transition: color 1.2s cubic-bezier(.55, .15, .35, 1);
+}
+
+.ind-value {
+  font-size: clamp(1rem, 3.5vw, 1.35rem);
+  font-weight: 800; color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+.ind-value.ind-changed { color: var(--water-blue); }
